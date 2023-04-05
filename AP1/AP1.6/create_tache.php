@@ -25,10 +25,11 @@ if(isset($_POST['submit'])){
         $task = htmlspecialchars(trim($_POST['task']));
         $status = htmlspecialchars(trim($_POST['status']));
         $demande = htmlspecialchars(trim($_POST['demande']));
+        $prio = htmlspecialchars(trim($_POST['priorité']));
 
         // Ajoute la tâche à la base de données
-        $req2 = $bdd->prepare('INSERT INTO task (task, status, id_utilisateurs, demande) VALUES (?, ?, ?, ?)');
-        if ($req2->execute(array($task, $status, $id_utilisateur, $demande))) {
+        $req2 = $bdd->prepare('INSERT INTO task (task, status, id_utilisateurs, demande,priorité) VALUES (?, ?, ?, ?,?)');
+        if ($req2->execute(array($task, $status, $id_utilisateur, $demande,$prio))) {
             echo "La tâche a été créée avec succès.";
         } else {
             echo "Erreur: " . $sql . "<br>" . $stmt->errorInfo()[2];
@@ -68,9 +69,20 @@ if(isset($_POST['submit'])){
             <option value="terminée">Terminée</option>
         </select>
     </div>
+    
     <div class="form-group">
         <label for="demande">Demande:</label>
         <textarea class="form-control" id="demande" name="demande" ></textarea>
     </div>
+    <div class="form-group">
+        <label for="priorité">Statut:</label>
+        <select class="form-control" id="priorité" name="priorité">
+            <option value="Basique">Basique</option>
+            <option value="Normal">Normal</option>
+            <option value="Important">Important</option>
+            <option value="Urgent">Urgent</option>
+        </select>
+    </div>
+    <br>
     <button type="submit" name="submit" class="btn btn-primary">Créer</button>
 </form>
