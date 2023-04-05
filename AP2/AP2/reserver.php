@@ -35,15 +35,17 @@
         <div class="form-group">
         <label for="salle">Salle :</label>
 		<select type="salle" class="form-control" name="salle" >
-			<option value="multimedia">Multimédia</option>
-			<option value="amphithéatre">Amphithéâtre</option>
-			<option value="réunion 1">Réunion 1</option>
-			<option value="réunion 2">Réunion 2</option>
-			<option value="réunion 4">Réunion 4</option>
-			<option value="réunion 5">Réunion 5</option>
-			<option value="réunion 6">Réunion 6</option>
-			<option value="réunion 7">Réunion 7</option>
-			<option value="réunion 8">Réunion 8</option>
+    <?php
+    // Configuration de la connexion à la base de données
+                    require_once('config.php');
+
+                    // Récupération de la liste des salles
+                    $query = "SELECT nom_salle FROM salles";
+                    $result = $bdd->query($query);
+                    while ($row = $result->fetch()) {
+                        echo "<option>" . $row['nom_salle'] . "</option>";
+                    }
+                    ?>
 		</select><br><br>
         </div>
         <button type="submit" class="btn btn-primary">Vérifier disponibilité</button>

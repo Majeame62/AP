@@ -25,6 +25,7 @@
         <a href="reserver.php" class="btn btn-success" style="margin-left:10px;margin-top:10px;"><span class="glyphicon glyphicon-check">Reserver une salle</span></a>
         <a href="planning.php" class="btn btn-success" style="margin-left:10px;margin-top:10px;"><span class="glyphicon glyphicon-check">Occupation des differentes salles</span></a>
         <a href="salle.php" class="btn btn-success" style="margin-left:10px;margin-top:10px;"><span class="glyphicon glyphicon-check">Gestion des differentes salles</span></a>
+        <a href="purge.php" class="btn btn-danger" style="margin-left:10px;margin-top:10px;"><span class="glyphicon glyphicon-check">purge des données</span></a>
         <br />
         <table style="margin-left:110px;" class="table">
           <thead>
@@ -39,6 +40,8 @@
           </thead>
           <tbody>
             <?php
+            
+            
               require_once('config.php');
               $query = $bdd->query("SELECT * FROM reservation");
               $query2=$bdd->query("SELECT nom_salle FROM salles inner JOIN reservation ON salles.id_salle = reservation.id_salle");
